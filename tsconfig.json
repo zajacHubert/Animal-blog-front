@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "useUnknownInCatchVariables": false,
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ],
     "target": "es5",
     "lib": [
       "dom",
@@ -21,6 +27,8 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "src/**/*.ts",
+    "src/declarations.d.ts"
   ]
 }
