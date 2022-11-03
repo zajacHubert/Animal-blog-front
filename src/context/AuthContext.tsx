@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { createContext, ReactNode, useState } from 'react';
+import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import { CurrentUser, UserToLogin } from '../types/user';
 
 export const AuthContext = createContext<AuthContextInterface | null>(null);
@@ -28,6 +28,10 @@ export const AuthContextProvider = ({ children }: Props) => {
         await axios.post('http://localhost:3001/auth/logout');
         setCurrentUser(null);
     }
+
+    useEffect(() => {
+        localStorage.setItem('user', JSON.stringify(currentUser));
+    }, [currentUser]);
 
     return (
         <AuthContext.Provider value={{ currentUser, login, logout }}>

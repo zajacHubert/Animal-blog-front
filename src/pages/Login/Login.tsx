@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useContext, useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserToLogin, UserToRegister } from '../../types/user';
+import { AuthContext } from '../../context/AuthContext';
 
 const schema = yup.object({
     username: yup.string().required().max(10),
@@ -17,12 +17,11 @@ const Login = () => {
     });
     const navigate = useNavigate();
     const [err, setErr] = useState('');
-
-
+    const ctx = useContext(AuthContext);
 
     const onSubmit: SubmitHandler<UserToLogin> = async (data) => {
         try {
-            await axios.post('http://localhost:3001/auth/login', data);
+            await ctx?.login(data);
             navigate('/');
         } catch (err: any) {
             setErr(err.response.data);
