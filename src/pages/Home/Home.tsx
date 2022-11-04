@@ -22,12 +22,12 @@ const Home = () => {
 
                 <div key={post.id} className={styles.content}>
                     <div className={styles.post}>
-                        <Link to={`/single/${post.id}`}>
+                        <Link to={`/post/${post.id}`}>
                             <h2 className={styles.title}>{post.title}</h2>
                         </Link>
                         <p className={styles.desc}>{post.desc}</p>
                         <p>Posted {moment(post.date).fromNow()}</p>
-                        <Link className={styles.btn} to={`/single/${post.id}`}>Read more</Link>
+                        <Link className={styles.btn} to={`/post/${post.id}`}>Read more</Link>
                     </div>
                     <div className={styles.img}>
                         <img src={post.img} alt="" />
