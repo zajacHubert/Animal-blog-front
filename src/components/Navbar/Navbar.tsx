@@ -16,8 +16,8 @@ const Navbar = () => {
             <nav>
                 <ul className={styles.links}>
                     <li><Link className={styles.link} to='/?cat=cats'>Cats</Link></li>
-                    <li><Link className={styles.link} to='/cat=dogs'>Dogs</Link></li>
-                    <li><Link className={styles.link} to='/cat=other'>Other</Link></li>
+                    <li><Link className={styles.link} to='/?cat=dogs'>Dogs</Link></li>
+                    <li><Link className={styles.link} to='/?cat=other'>Other</Link></li>
                 </ul>
             </nav>
             {ctx?.currentUser
