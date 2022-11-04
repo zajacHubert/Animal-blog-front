@@ -11,8 +11,12 @@ const Home = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await axios.get(`http://localhost:3001/post${cat}`);
-            setPosts(res.data)
+            try {
+                const res = await axios.get(`http://localhost:3001/post${cat}`);
+                setPosts(res.data)
+            } catch (err) {
+                console.log(err);
+            }
         })()
     }, [cat]);
 
