@@ -5,6 +5,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserToLogin, UserToRegister } from '../../types/user';
 import { AuthContext } from '../../context/AuthContext';
+import styles from './Login.module.scss';
+
 
 const schema = yup.object({
     username: yup.string().required().max(10),
@@ -29,14 +31,17 @@ const Login = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" {...register('username', { required: true, maxLength: 45 })} />
-            {errors.username && <p>{errors.username?.message}</p>}
-            <input type="text" {...register('password', { required: true, maxLength: 255 })} />
-            {errors.password && <p>{errors.password?.message}</p>}
-            <button>Login</button> <span>Don't have an acount? <Link to='/register'>Register</Link></span>
-            {err && <p>{err}</p>}
-        </form>
+        <div className={styles.log}>
+            <h2 className={styles.title}></h2>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <input type="text" {...register('username', { required: true, maxLength: 45 })} placeholder='username' />
+                {errors.username && <p className={styles.err} >{errors.username?.message}</p>}
+                <input type="text" {...register('password', { required: true, maxLength: 255 })} placeholder='password' />
+                {errors.password && <p className={styles.err} >{errors.password?.message}</p>}
+                <button>Login</button> <span>Don't have an acount? <Link to='/register'>Register</Link></span>
+                {err && <p className={styles.err} >{err}</p>}
+            </form>
+        </div>
     )
 }
 

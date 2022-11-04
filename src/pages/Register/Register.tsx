@@ -33,11 +33,11 @@ const Register = () => {
         <div className={styles.log}>
             <h2 className={styles.title}>Register</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" {...register('username', { required: true, maxLength: 45 })} />
+                <input type="text" {...register('username', { required: true, maxLength: 45 })} placeholder='username' />
                 {errors.username && <p className={styles.err}>{errors.username?.message}</p>}
-                <input type="text" {...register('email', { required: true, maxLength: 255 })} />
+                <input type="text" {...register('email', { required: true, maxLength: 255 })} placeholder='email' />
                 {errors.email && <p className={styles.err}>{errors.email?.message}</p>}
-                <input type="text" {...register('password', { required: true, maxLength: 255 })} />
+                <input type="text" {...register('password', { required: true, maxLength: 255 })} placeholder='password' />
                 {errors.password && <p className={styles.err}>{errors.password?.message}</p>}
                 <button>Register</button> <span>Do you have an acount? <Link to='/login'>Login</Link></span>
                 {err && <p className={styles.err}>{err}</p>}
