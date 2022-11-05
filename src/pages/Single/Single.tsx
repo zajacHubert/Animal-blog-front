@@ -35,7 +35,7 @@ const Single = () => {
     }
 
     return (
-        <div className={styles.single}>
+        <div>
             <div className={styles.content}>
                 <h2 className={styles.title}>{post?.title}</h2>
                 <div className={styles.main}>
