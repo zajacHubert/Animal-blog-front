@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import { CurrentUser, UserToLogin } from '../types/user';
+import HTTP from '../utils/axios';
 
 export const AuthContext = createContext<AuthContextInterface | null>(null);
 
@@ -14,18 +15,19 @@ interface AuthContextInterface {
     logout: () => Promise<void>;
 }
 
+
+
 export const AuthContextProvider = ({ children }: Props) => {
     const [userFromStorage, setUserFromStorage] = useState<string | null>(localStorage.getItem('user'));
     const [currentUser, setCurrentUser] = useState<CurrentUser | null>(JSON.parse(userFromStorage!) || null);
 
-
     const login = async (userToLogin: UserToLogin) => {
-        const res = await axios.post('http://localhost:3001/auth/login', userToLogin);
+        const res = await HTTP.post('http://localhost:3001/auth/login', userToLogin);
         setCurrentUser(res.data);
     }
 
     const logout = async () => {
-        await axios.post('http://localhost:3001/auth/logout');
+        await HTTP.post('http://localhost:3001/auth/logout');
         setCurrentUser(null);
     }
 

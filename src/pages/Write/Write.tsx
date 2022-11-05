@@ -3,6 +3,9 @@ import moment from 'moment';
 import React, { ChangeEvent, FormEvent, useState } from 'react'
 import ReactQuill from 'react-quill';
 import { useLocation, useNavigate } from 'react-router-dom';
+import 'react-quill/dist/quill.snow.css';
+import styles from './Write.module.scss';
+import HTTP from '../../utils/axios';
 
 const Write = () => {
     const state = useLocation().state;
@@ -16,7 +19,7 @@ const Write = () => {
         try {
             const formData = new FormData();
             formData.append('file', file!);
-            const res = await axios.post('/upload', formData);
+            const res = await axios.post('http://localhost:3001/file', formData);
             return res.data;
         } catch (err) { }
     }
@@ -26,12 +29,12 @@ const Write = () => {
         const imgUrl = await upload();
 
         try {
-            state ? await axios.patch(`/posts/${state.id}`, {
+            state ? await HTTP.patch(`http://localhost:3001/post/${state.id}`, {
                 title,
                 desc: value,
                 cat,
                 img: file ? imgUrl : ''
-            }) : await axios.post('/posts', {
+            }) : await HTTP.post('http://localhost:3001/post', {
                 title,
                 desc: value,
                 cat,
@@ -42,25 +45,24 @@ const Write = () => {
         } catch (err) {
             console.log(err)
         }
-
     }
 
     return (
-        <div className="add">
-            <div className="content">
+        <div className={styles.add}>
+            <div className={styles.content}>
                 <input
                     type="text"
                     placeholder='title'
                     value={title}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
                 />
-                <div className="editorContainer">
-                    <ReactQuill className='editor' theme="snow" value={value} onChange={setValue} />
+                <div className={styles.editorContainer}>
+                    <ReactQuill className={styles.editor} theme="snow" value={value} onChange={setValue} />
                 </div>
             </div>
-            <div className="menu">
-                <div className="item">
-                    <h1>Publish</h1>
+            <div className={styles.menu}>
+                <div className={styles.item}>
+                    <h2>Publish</h2>
                     <span>
                         <b>Status:</b> Draft
                     </span>
@@ -72,15 +74,15 @@ const Write = () => {
                         type="file" id="file"
                         onChange={(e: ChangeEvent<HTMLInputElement>) => setFile((e.currentTarget.files as FileList)[0])}
                     />
-                    <label className='file' htmlFor="file">Upload Image</label>
-                    <div className="buttons">
+                    <label className={styles.file} htmlFor="file">Upload Image</label>
+                    <div className={styles.buttons}>
                         <button>Save as a draft</button>
                         <button onClick={saveProject}>Publish</button>
                     </div>
                 </div>
-                <div className="item">
+                <div className={styles.item}>
                     <h1>Category</h1>
-                    <div className="cat">
+                    <div className={styles.cat}>
                         <input
                             type="radio"
                             checked={cat === "cats"}
@@ -89,7 +91,7 @@ const Write = () => {
                             id="cats"
                             onChange={(e) => setCat(e.target.value)}
                         />
-                        <label htmlFor="cats">Art</label>
+                        <label htmlFor="cats">Cats</label>
                     </div>
                     <div className="cat">
                         <input
@@ -100,7 +102,18 @@ const Write = () => {
                             id="dogs"
                             onChange={(e) => setCat(e.target.value)}
                         />
-                        <label htmlFor="dogs">Science</label>
+                        <label htmlFor="dogs">Dogs</label>
+                    </div>
+                    <div className="cat">
+                        <input
+                            type="radio"
+                            checked={cat === "other"}
+                            name="cat"
+                            value="other"
+                            id="dogs"
+                            onChange={(e) => setCat(e.target.value)}
+                        />
+                        <label htmlFor="dogs">Other</label>
                     </div>
                 </div>
             </div>

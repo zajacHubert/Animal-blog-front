@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserToRegister } from '../../types/user';
 import styles from './Register.module.scss';
+import HTTP from '../../utils/axios';
 
 const schema = yup.object({
     username: yup.string().required().max(10),
@@ -22,7 +23,7 @@ const Register = () => {
 
     const onSubmit: SubmitHandler<UserToRegister> = async (data) => {
         try {
-            await axios.post('http://localhost:3001/auth/register', data);
+            await HTTP.post('http://localhost:3001/auth/register', data);
             navigate('/login');
         } catch (err: any) {
             setErr(err.response.data);

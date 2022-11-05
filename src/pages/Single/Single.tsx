@@ -7,6 +7,7 @@ import { FetchedSinglePost } from '../../types/post';
 import styles from './Single.module.scss';
 import Edit from '../../img/edit.png';
 import Delete from '../../img/delete.png';
+import HTTP from '../../utils/axios';
 
 const Single = () => {
     const [post, setPost] = useState<FetchedSinglePost>();
@@ -17,7 +18,7 @@ const Single = () => {
     useEffect(() => {
         (async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/post/${postId}`);
+                const res = await HTTP.get(`http://localhost:3001/post/${postId}`);
                 setPost(res.data);
             } catch (err) {
                 console.log(err);
@@ -27,7 +28,7 @@ const Single = () => {
 
     const deletePost = async () => {
         try {
-            await axios.delete(`http://localhost:3001/post/${postId}`);
+            await HTTP.delete(`http://localhost:3001/post/${postId}`);
             navigate('/')
         } catch (err) {
             console.log(err);

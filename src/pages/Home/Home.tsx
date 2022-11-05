@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import moment from 'moment';
 import { Post } from '../../types/post';
 import styles from './Home.module.scss';
+import HTTP from '../../utils/axios';
 
 const Home = () => {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -12,7 +13,7 @@ const Home = () => {
     useEffect(() => {
         (async () => {
             try {
-                const res = await axios.get(`http://localhost:3001/post${cat}`);
+                const res = await HTTP.get(`http://localhost:3001/post${cat}`);
                 setPosts(res.data)
             } catch (err) {
                 console.log(err);
@@ -34,7 +35,7 @@ const Home = () => {
                         <Link className={styles.btn} to={`/post/${post.id}`}>Read more</Link>
                     </div>
                     <div className={styles.img}>
-                        <img src={post.img} alt="" />
+                        <img src={`../upload/${post.img}`} alt="" />
                     </div>
                 </div>
             ))}
