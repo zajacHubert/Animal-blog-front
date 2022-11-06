@@ -1,46 +1,31 @@
-# Getting Started with Create React App
+Apppliacation features:  
+- using the typescript version of react, styling using scss modules  
+- routing using react router dom
+- includes every CRUD operations
+- user login option and stored access token in cookie and basic user info in local storage
+- providing access to basic user information by using context  
+- dynamic data validation
+- permission to delete and edit the post only to the author of the post
+- libraries used:  
+   * react hook form 
+   * axios  
+   * moment  
+   * react-quill for create and post editing  
+   * yup  
+   
+   View all posts
+![image](https://user-images.githubusercontent.com/94974541/200161374-abc67a0c-f264-40c6-b0d1-b543b6b0c8b9.png)  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+View certain posts category   
+![image](https://user-images.githubusercontent.com/94974541/200161408-0202d783-2312-4fe2-8c17-14c79e10a0e2.png)  
 
-In the project directory, you can run:
+Create and edit post view
 
-### `npm start`
+![image](https://user-images.githubusercontent.com/94974541/200161434-6b8336d6-1669-43e2-a904-ec321b43f9b4.png)  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Single post view  
+![image](https://user-images.githubusercontent.com/94974541/200161470-c037d8a9-22a8-4533-921f-15d4cedd15f8.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
