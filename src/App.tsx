@@ -15,7 +15,6 @@ import Register from './pages/Register/Register';
 import Single from './pages/Single/Single';
 import Write from './pages/Write/Write';
 
-
 const Layout = () => {
   return (
     <>

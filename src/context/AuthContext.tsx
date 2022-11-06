@@ -1,21 +1,16 @@
-import axios from 'axios';
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import { CurrentUser, UserToLogin } from '../types/user';
 import HTTP from '../utils/axios';
 
 export const AuthContext = createContext<AuthContextInterface | null>(null);
-
 interface Props {
     children: ReactNode;
 }
-
 interface AuthContextInterface {
     currentUser: CurrentUser | null;
     login: (userToLogin: UserToLogin) => Promise<void>;
     logout: () => Promise<void>;
 }
-
-
 
 export const AuthContextProvider = ({ children }: Props) => {
     const [userFromStorage, setUserFromStorage] = useState<string | null>(localStorage.getItem('user'));

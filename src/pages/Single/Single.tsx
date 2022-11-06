@@ -1,4 +1,3 @@
-import axios from 'axios';
 import moment from 'moment';
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -8,6 +7,7 @@ import styles from './Single.module.scss';
 import Edit from '../../img/edit.png';
 import Delete from '../../img/delete.png';
 import HTTP from '../../utils/axios';
+import { getText } from '../../utils/getText';
 
 const Single = () => {
     const [post, setPost] = useState<FetchedSinglePost>();
@@ -35,19 +35,22 @@ const Single = () => {
         }
     }
 
+    if (!post) {
+        return <h2>There is no post in this section yet</h2>
+    }
+
     return (
         <div>
             <div className={styles.content}>
                 <h2 className={styles.title}>{post?.title}</h2>
                 <div className={styles.main}>
                     <div className={styles.img}>
-                        <img src={post?.img} alt="" />
+                        <img src={`../upload/${post?.img}`} alt="" />
                     </div>
                     <div className={styles.desc}>
-                        <p>{post?.desc}</p>
+                        <p>{getText(post?.desc! || '')}</p>
                     </div>
                 </div>
-
                 <div className={styles.user}>
                     <div className={styles.info}>
                         <span>Author <span className={styles.author}>{post?.username},</span> posted {moment(post?.date).fromNow()}</span>
@@ -59,9 +62,7 @@ const Single = () => {
                         <img className={styles.icon} onClick={deletePost} src={Delete} alt="" />
                     </div>}
                 </div>
-
             </div>
-
         </div>
     )
 }

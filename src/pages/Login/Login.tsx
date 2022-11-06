@@ -7,7 +7,6 @@ import { UserToLogin, UserToRegister } from '../../types/user';
 import { AuthContext } from '../../context/AuthContext';
 import styles from './Login.module.scss';
 
-
 const schema = yup.object({
     username: yup.string().required().max(10),
     password: yup.string().required().max(255),

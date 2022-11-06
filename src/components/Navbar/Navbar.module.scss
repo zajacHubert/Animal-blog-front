@@ -39,6 +39,11 @@
     span {
         margin: 0 1rem;
         font-size: 1rem;
+
+        &:first-of-type {
+            font-style: italic;
+            font-size: 1.2rem;
+        }
     }
 }
 
